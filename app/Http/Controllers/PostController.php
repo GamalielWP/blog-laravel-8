@@ -11,9 +11,10 @@ class PostController extends Controller
     {
 
         return view('posts', [
-            'title' => 'Posts',
+            'title' => 'All Posts',
             // 'posts' => Post::all()
-            'posts' => Post::latest()->get()
+            // eager load => code tidak melakukan looping berlebih pada table relation (with())
+            'posts' => Post::with(['author', 'category'])->latest()->get()
         ]);
 
     }
