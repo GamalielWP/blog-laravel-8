@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        'title' => 'Home'
+        'title' => 'Home',
+        'active' => 'home'
     ]);
 });
 
@@ -28,7 +29,8 @@ Route::get('/about', function () {
         'title' => 'About',
         'name' => 'Gamaliel',
         'email' => 'board.dabil@gmail.com',
-        'image' => 'loid.jpeg'
+        'image' => 'loid.jpeg',
+        'active' => 'about',
     ]);
 });
 
@@ -40,6 +42,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::get('categories', function(){
     return view('categories', [
         'title' => 'Post Categories',
+        'active' => 'categories',
         'categories' => Category::all()
     ]);
 });
@@ -47,6 +50,7 @@ Route::get('categories', function(){
 Route::get('/categories/{category:slug}', function(Category $category){
     return view('posts', [
         'title' => "Post By Category : $category->name",
+        'active' => 'categories',
         'posts' => $category->posts->load('category', 'author')
     ]);
 });
@@ -54,7 +58,10 @@ Route::get('/categories/{category:slug}', function(Category $category){
 Route::get('/author/{author:username}', function(User $author){
     return view('posts', [
         'title' => "Post By Author : $author->name",
+        'active' => null,
         // lazy eager loading => mencegah loop berlebih (load())
         'posts' => $author->posts->load('category', 'author')
     ]);
 });
+
+Route::get('/getPhotos/{categorName}', [PostController::class, 'getPhotos']);

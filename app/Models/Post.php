@@ -19,6 +19,9 @@ class Post extends Model
         'id'
     ];
 
+    // eager load => code tidak melakukan looping berlebih pada table relation (with())
+    protected $with = ['author', 'category'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
