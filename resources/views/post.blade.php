@@ -9,9 +9,9 @@
                 <h1 class="mb-3">{{ $post->title }}</h1>
 
                 <p>By. <a class="text-decoration-none"
-                    href="/author/{{ $post->author->username }}">{{ $post->author->name }}</a> in
+                    href="/blog?author={{ $post->author->username }}">{{ $post->author->name }}</a> in
                     <a class="text-decoration-none"
-                        href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                        href="/blog?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                 </p>
 
                 <img src="{{ $photo[$post->category->id]->urls->full }}"

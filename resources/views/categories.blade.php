@@ -8,7 +8,7 @@
             @foreach ($categories as $category)
                 <?php $photo = App\Http\Controllers\PostController::getPhotos($category->name); ?>
                 <div class="col-md-4">
-                    <a href="/categories/{{ $category->slug }}">
+                    <a href="/blog?category={{ $category->slug }}">
                         <div class="card bg-dark text-white">
                             <img src="{{ $photo[$category->id]->urls->full }}" class="card-img" alt="...">
                             <div class="card-img-overlay d-flex align-items-center p-0">
