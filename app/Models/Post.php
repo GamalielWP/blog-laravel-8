@@ -60,4 +60,10 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // menimpa default implicit binding route resource (id) dengan 'slug'
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
