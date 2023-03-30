@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     // yang diizinkan di input ke database
     // protected $fillable = [
@@ -65,5 +66,15 @@ class Post extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    // membuat slug dari title secara otomatis
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }

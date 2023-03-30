@@ -8,8 +8,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                {{-- /dashboard/posts mengarah ke index() --}}
-                <a class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}" href="/dashboard/posts">
+                {{-- /dashboard/posts mengarah ke index() | /posts* mendapatkan apapun yang ada setelah tanda * --}}
+                <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
                     <span data-feather="file-text"></span>
                     My Posts
                 </a>
