@@ -7,13 +7,15 @@
 
     <div class="col-lg-8">
         {{-- dengat method post url /dashboard/posts secara default mengarah ke store() --}}
-        <form method="POST" action="/dashboard/posts" class="mb-5">
+        <form method="POST" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control @error('title')
+                <input type="text" name="title"
+                    class="form-control @error('title')
                     is-invalid
-                @enderror" id="title" required autofocus value="{{ old('title') }}">
+                @enderror"
+                    id="title" required autofocus value="{{ old('title') }}">
                 @error('title')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -22,9 +24,11 @@
             </div>
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
-                <input type="text" name="slug" class="form-control @error('slug')
+                <input type="text" name="slug"
+                    class="form-control @error('slug')
                     is-invalid
-                @enderror" id="slug" readonly required value="{{ old('slug') }}">
+                @enderror"
+                    id="slug" readonly required value="{{ old('slug') }}">
                 @error('slug')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -40,6 +44,17 @@
                         </option>
                     @endforeach
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Post Image</label>
+                <input class="form-control @error('image')
+                    is-invalid
+                @enderror" type="file" id="image" name="image">
+                @error('image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="body" class="form-label">Body</label>

@@ -24,8 +24,9 @@
     @if ($posts->count())
         <?php $photo = App\Http\Controllers\PostController::getPhotos($posts[0]->category->name); ?>
         <div class="card mb-3">
-            <img src="{{ $photo[0]->urls->full }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
-
+            <div style="max-height: 400px; overflow:hidden">
+                <img src="{{ !$posts[0]->image ? $photo[0]->urls->full : asset('storage/'.$posts[0]->image) }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
+            </div>
             <div class="card-body text-center">
                 <h3 class="card-title"><a class="text-decoration-none text-dark"
                         href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a></h3>
@@ -53,7 +54,7 @@
                             <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)"><a
                                     href="/blog?category={{ $post->category->slug }}"
                                     class="text-white text-decoration-none">{{ $post->category->name }}</a></div>
-                            <img src="{{ $photo[$post->category->id]->urls->full }}" class="card-img-top"
+                            <img src="{{ !$post->image ? $photo[0]->urls->full : asset('storage/'.$post->image) }}" class="card-img-top"
                                 alt="{{ $post->category->name }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $post->title }}</h5>

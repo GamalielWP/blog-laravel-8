@@ -14,7 +14,7 @@
                         href="/blog?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                 </p>
 
-                <img src="{{ $photo[$post->category->id]->urls->full }}"
+                <img src="{{ !$post->image ? $photo[0]->urls->full : asset('storage/'.$post->image) }}"
                 class="img-fluid" alt="{{ $post->category->name }}">
 
                 <article class="my-3 fs-5">
